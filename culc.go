@@ -1,13 +1,15 @@
 package main
 
-for {
-fmt.Print("Введите выражение (в формате 2+5) (или 'exit' для выхода): ")
-fmt.Scanln(&input)
+import "fmt"
 
-if strings.ToLower(input) == "exit" {
-fmt.Println("Программа завершена")
-break
-}
+//	for {
+//		fmt.Print("Введите выражение (в формате 2+5) (или 'exit' для выхода): ")
+//		fmt.Scanln(&input)
+//
+//		if strings.ToLower(input) == "exit" {
+//			fmt.Println("Программа завершена")
+//		break
+//	}
 func plus(x, y int) int {
 	return x + y
 }
