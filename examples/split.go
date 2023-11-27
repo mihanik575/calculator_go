@@ -19,4 +19,5 @@ func main() {
 	fmt.Printf("%q\n", strings.SplitAfter("a,b,c", ""))
 	fmt.Printf("%q\n", strings.SplitAfter("2+5", " "))
 	fmt.Printf("%q\n", strings.SplitAfter("2 + 5", ","))
+
 }
