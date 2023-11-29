@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -13,8 +14,9 @@ func main() {
 	var input string
 
 	for {
-		fmt.Println("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
-		fmt.Scanln(input)
+		fmt.Print("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
+
+		fmt.Scanln(&input)
 
 		//fmt.Println(input)
 
@@ -48,8 +50,12 @@ func calculation(input string) (int, error) {
 	var operator string
 
 	if len(input) == 3 {
-		num1 = int(input[0])
-		num2 = int(input[2])
+		num1, _ = strconv.Atoi(string(input[0]))
+		operator = string(input[1])
+		num2, _ = strconv.Atoi(string(input[2]))
+		//input = strings.Split(input)
+		//num1, _ = strconv.Atoi()
+		//num2 = int(input[2])
 		operator = string(input[1])
 		switch operator {
 		case "+":
@@ -67,8 +73,9 @@ func calculation(input string) (int, error) {
 			return 0, fmt.Errorf("неверная операция")
 		}
 	} else {
-		fmt.Errorf("неправильное значение, введите цифры до 10 в формате 2+3")
+		return 0, fmt.Errorf("неверный формат укажите числа до 9")
 	}
+
 	//if error != nil {
 	//	return 0, error
 	//}
