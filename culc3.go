@@ -1,6 +1,5 @@
 package main
 
-//работает
 import (
 	"fmt"
 	"strconv"
