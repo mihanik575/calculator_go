@@ -11,24 +11,21 @@ import (
 
 func main() {
 
-	//var input string
-
 	for {
-		//fmt.Println("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
-		//fmt.Scanln(&input)
+		fmt.Print("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
+
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Println("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
 		input, err := reader.ReadString('\n')
-		fmt.Println(input)
 		if err != nil {
 			fmt.Println("Ошибка:", err)
 		}
+
 		if strings.ToLower(input) == "exit" {
 			fmt.Println("Программа завершена")
 			break
 		}
 
-		result, err := calculation2(input)
+		result, err := calculation(input)
 		if err != nil {
 			fmt.Println("Ошибка:", err)
 		} else {
@@ -38,20 +35,26 @@ func main() {
 	}
 }
 
-func calculation2(input string) (int, error) {
+func calculation(input string) (int, error) {
+	var num1str, num2str string
 	var num1, num2 int
 	var operator string
-	fmt.Println(input)
+
 	for i, c := range input {
 		if c == '+' || c == '-' || c == '*' || c == '/' {
-			num1, _ = strconv.Atoi(input[:i])
-			num2, _ = strconv.Atoi(input[i+1:])
+			// operator found
+			num1str = strings.TrimSpace(input[:i])
+			num2str = strings.TrimSpace(input[i+1:])
+			num1, _ = strconv.Atoi(num1str)
+			num2, _ = strconv.Atoi(num2str)
+
 			operator = string(c)
 			break
 		}
 	}
-	fmt.Println(num1, operator, num2)
-	if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
+
+	if num1 < 0 || num1 > 11 || num2 < 0 || num2 > 11 {
+
 		return 0, fmt.Errorf("Неправильный ввод введите число от 1 до 10")
 	}
 	switch operator {
