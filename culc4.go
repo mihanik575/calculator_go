@@ -16,6 +16,10 @@ func main() {
 
 		fmt.Scanln(&input)
 
+		if strings.ToLower(input) == "exit" {
+			fmt.Println("Программа завершена")
+			break
+		}
 		result, err := calculation(input)
 		if err != nil {
 			fmt.Println("Ошибка:", err)
@@ -23,10 +27,6 @@ func main() {
 			fmt.Println("Результат:", result)
 		}
 
-		if strings.ToLower(input) == "exit" {
-			fmt.Println("Программа завершена")
-			break
-		}
 	}
 }
 
@@ -43,7 +43,7 @@ func calculation(input string) (int, error) {
 			break
 		}
 	}
-	if num1 < 0 || num1 > 11 || num2 < 0 || num2 > 11 {
+	if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
 
 		return 0, fmt.Errorf("Неправильный ввод введите число от 1 до 10")
 	}
