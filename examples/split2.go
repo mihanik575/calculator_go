@@ -75,6 +75,8 @@ func parseString(s string) (int, int, string) {
 
 func main() {
 	num1, num2, operator := parseString("12*5")
+	//par, error = strconv.ParseInt("-42", 10, 64)
+	//fmt.Println(par)
 	fmt.Println("Num1:", num1)
 	fmt.Println("Num2:", num2)
 	fmt.Println("Operator:", operator)

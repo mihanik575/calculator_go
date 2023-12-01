@@ -2,25 +2,28 @@ package main
 
 import "fmt"
 
-func convertRomanToArabic(romanNum string) int {
-	romanMap := map[string]int{
-		"I":    1,
-		"II":   2,
-		"III":  3,
-		"IV":   4,
-		"V":    5,
-		"VI":   6,
-		"VII":  7,
-		"VIII": 8,
-		"IX":   9,
-		"X":    10,
+func romanToInt(s string) int {
+	romanMap := map[rune]int{
+		'I': 1,
+		'V': 5,
+		'X': 10,
+		'L': 50,
+		'C': 100,
+		'D': 500,
+		'M': 1000,
 	}
-
-	return romanMap[romanNum]
+	sum := romanMap[rune(s[0])]
+	for i := 1; i < len(s); i++ {
+		roman := rune(s[i])
+		prev := romanMap[rune(s[i-1])]
+		if prev < romanMap[roman] {
+			sum -= (prev * 2)
+		}
+		sum += romanMap[roman]
+	}
+	return sum
 }
 
 func main() {
-	fmt.Println(convertRomanToArabic("V"))  // Output: 5
-	fmt.Println(convertRomanToArabic("IX")) // Output: 9
-	fmt.Println(convertRomanToArabic("X"))  // Output: 10
+	fmt.Println(romanToInt("MMDCCLXXXIX"))
 }
