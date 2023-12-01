@@ -1,6 +1,5 @@
 package main
 
-// работает
 import (
 	"fmt"
 	"strconv"
@@ -18,9 +17,9 @@ func main() {
 
 		result, err := calculation(input)
 		if err != nil {
-			fmt.Println("Error:", err)
+			fmt.Println("Ошибка:", err)
 		} else {
-			fmt.Println("Result:", result)
+			fmt.Println("Результат:", result)
 		}
 
 		if strings.ToLower(input) == "exit" {
@@ -42,6 +41,10 @@ func calculation(input string) (int, error) {
 			operator = string(c)
 			break
 		}
+	}
+	if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
+
+		return 0, fmt.Errorf("Неправильный ввод введите число от 1 до 10")
 	}
 	switch operator {
 	case "+":
