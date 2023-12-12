@@ -9,29 +9,29 @@ import (
 	"strings"
 )
 
-func main() {
+func main() (int, error) {
 
 	for {
 		fmt.Print("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
 
 		reader := bufio.NewReader(os.Stdin)
 		input, err := reader.ReadString('\n')
-
-		if strings.ToLower(input) == "exit" {
+		result, err := Сalculation1(input)
+		switch {
+		case err != nil:
+			return 0, fmt.Errorf("Ошибка:", err)
+		case reader.ReadString(input):
 			fmt.Println("Программа завершена")
 			break
-		}
-		result, err := Сalculation(input)
-		if err != nil {
-			fmt.Println("Ошибка:", err)
-		} else {
+		default:
 			fmt.Println("Результат:", result)
 		}
-
+		return 0, nil
 	}
+
 }
 
-func Сalculation(input string) (int, error) {
+func Сalculation1(input string) (int, error) {
 	var num1str, num2str string
 	var num1, num2 int
 	var operator string

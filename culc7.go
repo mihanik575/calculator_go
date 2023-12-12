@@ -11,6 +11,10 @@ import (
 
 func main() {
 
+	var num1str, num2str string
+	var num1, num2 int
+	var operator string
+
 	for {
 		fmt.Print("Введите выражение в формате 2+5 (или 'exit' для выхода): ")
 
@@ -21,35 +25,33 @@ func main() {
 			fmt.Println("Программа завершена")
 			break
 		}
-		result, err := Сalculation(input)
+
+		for i, c := range input {
+			if c == '+' || c == '-' || c == '*' || c == '/' {
+				// operator found
+				num1str = strings.TrimSpace(input[:i])
+				num2str = strings.TrimSpace(input[i+1:])
+				num1, _ = strconv.Atoi(num1str)
+				num2, _ = strconv.Atoi(num2str)
+
+				operator = string(c)
+				break
+			}
+		}
+
+		result, err := Сalculation(num1, num2, operator)
+
 		if err != nil {
 			fmt.Println("Ошибка:", err)
 		} else {
 			fmt.Println("Результат:", result)
 		}
-
 	}
 }
 
-func Сalculation(input string) (int, error) {
-	var num1str, num2str string
-	var num1, num2 int
-	var operator string
+func Сalculation(num1, num2 int, operator string) (int, error) {
 
-	for i, c := range input {
-		if c == '+' || c == '-' || c == '*' || c == '/' {
-			// operator found
-			num1str = strings.TrimSpace(input[:i])
-			num2str = strings.TrimSpace(input[i+1:])
-			num1, _ = strconv.Atoi(num1str)
-			num2, _ = strconv.Atoi(num2str)
-
-			operator = string(c)
-			break
-		}
-	}
-
-	if num1 < 0 || num1 > 11 || num2 < 0 || num2 > 11 {
+	if num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10 {
 
 		return 0, fmt.Errorf("Неправильный ввод введите число от 1 до 10")
 	}

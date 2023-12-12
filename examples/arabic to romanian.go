@@ -3,7 +3,6 @@ package main
 import "fmt"
 
 func arabicToRoman(num int) string {
-
 	arabic := {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	roman := {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"}
 	result := ""
