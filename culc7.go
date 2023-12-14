@@ -28,7 +28,7 @@ func main() {
 
 		for i, c := range input {
 			if c == '+' || c == '-' || c == '*' || c == '/' {
-				// operator found
+
 				num1str = strings.TrimSpace(input[:i])
 				num2str = strings.TrimSpace(input[i+1:])
 				num1, _ = strconv.Atoi(num1str)
